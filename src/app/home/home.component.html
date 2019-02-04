@@ -1,0 +1,37 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar><img src="assets/img/logo.jpg" width="100%" height="120%"></mat-toolbar>
+    <mat-toolbar   style = "line-height:1.0; font-size:18px" height= "90%">Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item style="background: #FFFFFF">Pagina Principal</a>
+      <a mat-list-item [routerLink]="['/agregar_empleado']">Agregar Empleado</a>
+      <a mat-list-item [routerLink]="['/agregar_horario']">Agregar Horario</a>
+      <a mat-list-item [routerLink]="['/ver_asistencia']">Ver Asistencia</a>
+      <a mat-list-item [routerLink]="['/ver_empleado']">Ver Empleado</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span
+      style = "font-family:Times New Roman;
+      line-height:1.0;
+      font-size:15px">
+      HD Registro<br>
+      Panel de Control de Sistema de Huellas<br>
+      Control de Asistencia de Huellas
+      </span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

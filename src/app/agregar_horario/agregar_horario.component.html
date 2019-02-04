@@ -1,0 +1,90 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar><img src="assets/img/logo.jpg" width="100%" height="120%"></mat-toolbar>
+    <mat-toolbar   style = "line-height:1.0; font-size:18px" height= "90%">Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['/pagina_principal']">Pagina Principal</a>
+      <a mat-list-item [routerLink]="['/agregar_empleado']">Agregar Empleado</a>
+      <a mat-list-item style="background: #FFFFFF">Agregar Horario</a>
+      <a mat-list-item [routerLink]="['/ver_asistencia']">Ver Asistencia</a>
+      <a mat-list-item [routerLink]="['/ver_empleado']">Ver Empleado</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span
+      style = "font-family:Times New Roman;
+      line-height:1.0;
+      font-size:15px">
+      HD Registro<br>
+      Panel de Control de Sistema de Huellas<br>
+      Control de Asistencia de Huellas
+      </span>
+    </mat-toolbar>
+    <h1 align="center">Agregar  Nuevo  Horario</h1>
+    <br>
+    <form style="padding-left:80px; position: flex;">
+      <p>
+        <label># de Empleado</label>
+        &nbsp;
+        <input type="text" [(ngModel)]="currentItem" [ngModelOptions]="{standalone: true}" required>
+        &nbsp;
+        <button class="btn btn-light btn-outline-secondary" (click)="onClickMe()">Buscar</button>
+      </p>
+      <div [style.visibility]="isVisible1 ? 'visible' : 'hidden'" >
+        <h3>No se encontro ningun resultado</h3>
+      </div>
+      <div [style.visibility]="isVisible ? 'visible' : 'hidden'" >
+        <ul>Datos Profesor
+          <li>Nombre</li>
+          <li>Tipo Empleado</li>
+          <li>Carreras</li>
+        </ul>
+        <label>Carrera</label>
+        &nbsp;
+        <select  name="type_test">
+            <option *ngFor="let y of career">{{y}}</option>
+        </select>
+        &nbsp;
+        <label>Asignatura</label>
+        &nbsp;
+        <select  name="type_test">
+            <option *ngFor="let y of matter">{{y}}</option>
+        </select>
+        <br>
+        <label>Seleccione los dias a impartir</label>
+        <br>
+        <input type="checkbox"> LUNES
+        <br> De <input type="time"> a <input type="time">
+        <br>
+        <input type="checkbox"> MARTES
+        <br>De <input type="time"> a <input type="time">
+        <br>
+        <input type="checkbox"> MIERCOLES
+        <br>De <input type="time"> a <input type="time">
+        <br>
+        <input type="checkbox"> JUEVES
+        <br>De <input type="time"> a <input type="time">
+        <br>
+        <input type="checkbox"> VIERNES
+        <br>De <input type="time"> a <input type="time">
+        <br>
+        <input type="checkbox"> SABADO
+        <br>De <input type="time"> a <input type="time">
+        <br>
+        <button class="btn btn-light btn-outline-secondary">Guardar</button>
+      </div>
+    </form>
+  </mat-sidenav-content>
+</mat-sidenav-container>

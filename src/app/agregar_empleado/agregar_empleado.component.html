@@ -1,0 +1,93 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar><img src="assets/img/logo.jpg" width="100%" height="120%"></mat-toolbar>
+    <mat-toolbar   style = "line-height:1.0; font-size:18px" height= "90%">Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['/pagina_principal']">Pagina Principal</a>
+      <a mat-list-item style="background: #FFFFFF">Agregar Empleado</a>
+      <a mat-list-item [routerLink]="['/agregar_horario']">Agregar Horario</a>
+      <a mat-list-item [routerLink]="['/ver_asistencia']">Ver Asistencia</a>
+      <a mat-list-item [routerLink]="['/ver_empleado']">Ver Empleado</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button(click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span
+      style = "font-family:Times New Roman;
+      line-height:1.0;
+      font-size:15px">
+      HD Registro<br>
+      Panel de Control de Sistema de Huellas<br>
+      Control de Asistencia de Huellas
+      </span>
+    </mat-toolbar>
+    <h1 align="center">Agregar  Nuevo  Empleado</h1>
+    <br>
+    <form style="padding-left:80px; position: flex;">
+      <p>
+        <label>Nombres</label>
+        &nbsp;
+        <input type="text" name="nombre" required>
+        &nbsp;
+        <label>Apellido Paterno</label>
+        &nbsp;
+        <input type="text" name="apellido_paterno" required>
+        &nbsp;
+        <label>Apellido Materno</label>
+        &nbsp;
+        <input type="text" name="apellido_materno" required>
+      </p>
+      <p>
+        <label># de Empleado</label>
+        &nbsp;
+        <input type="text" name="id" required>
+      </p>
+      <p>
+        <label class="control-label">Tipo de Empleado</label>
+        &nbsp;
+        <select (change)="onChange($event.target.value)" name="type_employee">
+                <option *ngFor="let x of data">{{x}}</option>
+        </select>
+
+        <!-- Start select after selection -->
+        &nbsp;
+        <label class="control-label" [style.visibility]="isVisible ? 'visible' : 'hidden'">Test: </label>
+        &nbsp;
+        <select  name="type_test" [style.visibility]="isVisible ? 'visible' : 'hidden'">
+            <option *ngFor="let x of temp">{{x}}</option>
+        </select>
+        &nbsp;
+        <label class="control-label" [style.visibility]="isVisible1 ? 'visible' : 'hidden'" >Test 1: </label>
+        &nbsp;
+        <select  name="type_test"[style.visibility]="isVisible1 ? 'visible' : 'hidden'">
+            <option *ngFor="let x of temp1">{{x}}</option>
+        </select>
+      </p>
+          <!-- End select after selection -->
+      <p>
+        <label>Selecciona las carreras donde imparte clase:</label>
+        <br>
+        <input type="checkbox"> ISI
+        <br>
+        <input type="checkbox"> LES
+        <br>
+        <input type="checkbox"> LCI
+        <br>
+        <input type="checkbox"> ITR
+        <br>
+        <input type="checkbox"> LSC
+      </p>
+      <button class="btn btn-light btn-outline-secondary">Guardar</button>
+    </form>
+  </mat-sidenav-content>
+</mat-sidenav-container>
